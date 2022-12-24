@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     stages {
-	   stage('SCM Checkout'){
-	    steps {
+	   stage('SCM Checkout') {
+	     steps {
           git 'https://github.com/noorwale/sonar.git'
 		  }
         }
@@ -12,18 +12,16 @@ pipeline {
             steps {
                 sh 'mvn install' 
             }
-        stage('code-analysis'){
-            steps{
+        }
+        stage('code-analysis') {
+            steps {
                 withSonarQubeEnv(credentialsId: 'sonarqube_token') {
                         sh 'mvn sonar:sonar'
-}
+                }
             }
         }
-        }        
-		
-		
-		  }
-
-   }
+    }        
+	
+}
     
 
