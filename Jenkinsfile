@@ -22,7 +22,7 @@ pipeline {
             }    
             }
         }
-        stage(guality-gate){
+        stage('guality-gate'){
             steps{
                 script{
                     waitForQualityGate abortPipeline: false, credentialsId: 'sonarqube_token'
