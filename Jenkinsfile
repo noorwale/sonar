@@ -12,6 +12,13 @@ pipeline {
             steps {
                 sh 'mvn install' 
             }
+        stage('code-analysis'){
+            steps{
+                withSonarQubeEnv(credentialsId: 'sonarqube_token') {
+                        sh 'mvn sonar:sonar'
+}
+            }
+        }
         }        
 		
 		
